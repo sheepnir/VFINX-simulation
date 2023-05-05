@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Investment Results</title>
+  </head>
+  <body>
+    <h1>Investment Results</h1>
+    <p>Your investment value: {{ final_value | round(2) }}</p>
+    <p>Total dividends received: {{ dividends | round(2) }}</p>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Number of shares</th>
+          <th>Closing price</th>
+          <th>Dividend per share</th>
+          <th>Total Dividend amount</th>
+          <th>Number of new shares purchased</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in dividend_records %}
+        <tr>
+          <td>{{ record['date'] }}</td>
+          <td>{{ record['num_shares'] }}</td>
+          <td>{{ record['closing_price'] }}</td>
+          <td>{{ record['dividend_per_share'] }}</td>
+          <td>{{ record['total_dividend'] }}</td>
+          <td>{{ record['new_shares_purchased'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p><a href="{{ url_for('index') }}">Go back</a></p>
+  </body>
+</html>
